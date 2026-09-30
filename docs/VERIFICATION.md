@@ -35,3 +35,9 @@ The self-contained HTML export was also opened with `file://` and checked for la
 - [ ] Real-device Safari/Android acceptance, production accessibility audit and performance checks under actual hosting/network conditions.
 
 No claim of production submissions, confirmed bookings, secure authentication, active backups or live analytics is made. `main` and the existing public deployment remain untouched. All implementation changes target `dev`.
+
+## Published stylesheet repair
+
+The Sites checkout contained the previous design's `style.css` alongside the new page markup. Replaced it with the matching responsive stylesheet and gave all entry pages a new stylesheet filename (`responsive-v3.css`) to avoid stale asset reuse. Added SVG width/height attributes so icons remain 23px even if styles fail, narrow-phone wrapping, tablet grids and 16px mobile form controls.
+
+`tests/responsive.cjs` validates the actual Sites `dist` directory: 50 combinations of five screens × Arabic/English × 320/390/768/1024/1440px passed. No horizontal overflow, all icons at most 42px, correct theme loaded, and 23px fallback with the stylesheet blocked. Mobile Arabic and desktop English screenshots inspected.
