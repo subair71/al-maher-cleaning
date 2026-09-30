@@ -25,4 +25,16 @@ menu.onclick=()=>{const open=nav.classList.toggle('open');menu.setAttribute('ari
 nav.querySelectorAll('a').forEach(a=>a.onclick=()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}});
 document.getElementById('enquiry').onsubmit=e=>{e.preventDefault();const d=new FormData(e.currentTarget);const ar=lang==='ar';const msg=(ar?'مرحباً شركة الماهر، أود الاستفسار عن خدمة تنظيف.':'Hello Al Maher, I would like to enquire about cleaning.')+'\n'+(ar?'الاسم: ':'Name: ')+d.get('name')+'\n'+(ar?'الهاتف: ':'Phone: ')+d.get('phone')+'\n'+(ar?'الخدمة: ':'Service: ')+services[Number(d.get('service'))][ar?1:2]+'\n'+(ar?'الرسالة: ':'Message: ')+d.get('message');window.open('https://wa.me/962778842130?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer')};
-if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.service,.offers article,.about,.gallery figure').forEach(el=>observer.observe(el))}
+
+const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+if('IntersectionObserver' in window&&!motionPreference.matches){
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add('motion-enter');observer.unobserve(entry.target)}
+ }),{threshold:.08});
+ document.querySelectorAll('.section-heading,.about,.why-picture,.benefit,.service,.offers article,.gallery figure,.steps article,.cta-band .wrap,#enquiry').forEach(el=>{
+  const siblings=Array.from(el.parentElement.children);
+  el.style.setProperty('--motion-delay',Math.min(siblings.indexOf(el),3)*65+'ms');
+  observer.observe(el);
+ });
+ motionPreference.addEventListener('change',event=>{if(event.matches){observer.disconnect();document.querySelectorAll('.motion-enter').forEach(el=>el.classList.remove('motion-enter'))}});
+}
