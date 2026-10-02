@@ -1,6 +1,11 @@
 export const pair=(ar,en)=>({ar,en});
 export const business={name:pair('الماهر','Al Maher'),phone:'+962778842130',whatsapp:'https://wa.me/962778842130',address:pair('لواء الرصيفة · جبل الشمالي · شارع الملك عبدالله الثاني، الأردن','Russeifa · Jabal Al Shamali · King Abdullah II Street, Jordan')};
-export const photos={hero:'assets/cleaning-hero.webp',sofa:'assets/cleaning-sofa.webp',office:'assets/cleaning-office.webp',glass:'assets/cleaning-glass.webp'};
+export const photos={
+hero:'https://images.pexels.com/photos/6196688/pexels-photo-6196688.jpeg?cs=srgb&fm=jpg',
+sofa:'https://images.pexels.com/photos/4401535/pexels-photo-4401535.jpeg?cs=srgb&fm=jpg',
+office:'https://images.pexels.com/photos/10567271/pexels-photo-10567271.jpeg?cs=srgb&fm=jpg',
+glass:'https://images.pexels.com/photos/6195104/pexels-photo-6195104.jpeg?cs=srgb&fm=jpg'
+};
 export const services=[
 {id:'home',icon:'home',title:pair('تنظيف المنازل والشقق','Home & apartment cleaning'),description:pair('عناية شاملة بالشقق المفروشة والمنازل والفلل، من الغرف إلى المطابخ.','A complete home-care service for apartments, houses and villas, covering living areas, bedrooms, kitchens and the details that make your space feel fresh, comfortable and ready to enjoy.'),image:photos.hero},
 {id:'sofa',icon:'sofa',title:pair('دراي كلين الكنب والسجاد','Sofa & carpet cleaning'),description:pair('تنظيف الكنب والسجاد والمفروشات لإطلالة منتعشة ومكان أريح.','Specialist care for sofas, carpets and upholstery to lift everyday dust and refresh the look and feel of the fabrics you use most.'),image:photos.sofa},
