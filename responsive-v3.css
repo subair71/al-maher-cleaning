@@ -66,3 +66,9 @@ footer{background:linear-gradient(125deg,#0a2c50,#064781 65%,#07569c);color:#fff
 
 /* Request confirmation: bilingual, compact, and responsive. */
 .submission-summary{width:100%;min-width:0}.submission-summary h2{font-size:1.5rem;margin:.75rem 0}.submission-summary dl{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}.submission-summary dt{font-size:.875rem;color:var(--muted)}.submission-summary dd{margin:.3rem 0;font-weight:600;overflow-wrap:anywhere}.submission-summary .button{white-space:normal;text-align:center}.submission-summary p{margin:.75rem 0}@media(max-width:480px){.submission-summary dl{grid-template-columns:1fr}.submission-summary .button{width:100%}}
+
+/* A quiet Amman skyline signature beneath the introductory copy. */
+.hero{isolation:isolate}
+.hero:before{width:min(38%,380px);height:145px;inset-inline-start:0;bottom:8px;background:url('assets/amman.webp') center bottom/contain no-repeat;opacity:.75;z-index:0;pointer-events:none}
+.hero-copy,.hero-visual{position:relative;z-index:1}
+@media(max-width:760px){.hero:before{width:230px;max-width:75%;height:90px;inset-inline-start:0;bottom:0;opacity:.65}}
