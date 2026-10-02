@@ -63,3 +63,6 @@ footer{background:linear-gradient(125deg,#0a2c50,#064781 65%,#07569c);color:#fff
 .footer-grid p,.footer-bottom{color:#d6e6f4}
 .footer-grid>div>a{color:#e6f0f8}
 .footer-bottom{border-color:#ffffff20}
+
+/* Request confirmation: bilingual, compact, and responsive. */
+.submission-summary{width:100%;min-width:0}.submission-summary h2{font-size:1.5rem;margin:.75rem 0}.submission-summary dl{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}.submission-summary dt{font-size:.875rem;color:var(--muted)}.submission-summary dd{margin:.3rem 0;font-weight:600;overflow-wrap:anywhere}.submission-summary .button{white-space:normal;text-align:center}.submission-summary p{margin:.75rem 0}@media(max-width:480px){.submission-summary dl{grid-template-columns:1fr}.submission-summary .button{width:100%}}

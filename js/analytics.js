@@ -1,0 +1,3 @@
+import {config} from './config.js';
+export function enableAnalytics(){if(!config.production||!/^G-[A-Z0-9]+$/.test(config.analyticsMeasurementId))return false;window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config',config.analyticsMeasurementId,{send_page_view:false});const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+config.analyticsMeasurementId;document.head.append(script);return true}
+export function pageView(title){if(window.gtag)window.gtag('event','page_view',{page_title:title,page_location:location.origin+location.pathname});}
