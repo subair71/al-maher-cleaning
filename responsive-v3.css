@@ -164,3 +164,109 @@ main,header,footer{position:relative;z-index:1}
   .hero{padding-bottom:120px}
   .hero:before{width:320px;height:100px;opacity:.14}
 }
+
+
+/* Jordan-inspired gradient enhancements */
+:root{
+  --jordan-blue:#0b5fa5;
+  --jordan-navy:#14375c;
+  --jordan-gold:#d4ab43;
+  --jordan-sand:#f6efe3;
+  --jordan-sky:#eaf5ff;
+}
+
+.hero{
+  background:
+    linear-gradient(135deg,rgba(234,245,255,.86) 0%,rgba(255,255,255,.96) 46%,rgba(246,239,227,.72) 100%);
+  border-radius:32px;
+  padding-inline:clamp(18px,3vw,36px);
+  box-shadow:inset 0 0 0 1px rgba(20,55,92,.06);
+}
+
+.hero-copy em{
+  background:linear-gradient(90deg,var(--jordan-blue),var(--jordan-navy),var(--jordan-gold));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.trust-bar{
+  background:
+    linear-gradient(90deg,rgba(234,245,255,.92),rgba(255,255,255,.95),rgba(246,239,227,.82));
+}
+
+.intro-rich{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.98),rgba(234,245,255,.48));
+  border-radius:28px;
+  padding-inline:clamp(18px,3vw,34px);
+}
+
+.value-grid article:nth-child(1),
+.need-grid article:nth-child(1){
+  background:linear-gradient(180deg,#ffffff 0%,#eef7ff 100%);
+}
+.value-grid article:nth-child(2),
+.need-grid article:nth-child(2){
+  background:linear-gradient(180deg,#ffffff 0%,#f9f2e7 100%);
+}
+.value-grid article:nth-child(3),
+.need-grid article:nth-child(3){
+  background:linear-gradient(180deg,#ffffff 0%,#eef3f8 100%);
+}
+.need-grid article:nth-child(4){
+  background:linear-gradient(180deg,#ffffff 0%,#f3f7fb 100%);
+}
+
+.service-card{
+  background:linear-gradient(160deg,#ffffff 0%,#fbfdff 55%,#f2f7fb 100%);
+}
+
+.soft-section{
+  background:
+    linear-gradient(135deg,rgba(234,245,255,.78),rgba(255,255,255,.92) 48%,rgba(246,239,227,.64));
+}
+
+.offers-section{
+  position:relative;
+}
+.offers-section:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(11,95,165,.08),transparent 24%),
+    radial-gradient(circle at 90% 10%,rgba(212,171,67,.10),transparent 22%);
+  pointer-events:none;
+}
+.offers-section>*{
+  position:relative;
+  z-index:1;
+}
+
+.offer-card{
+  background:
+    linear-gradient(160deg,#ffffff 0%,#fffdf8 60%,#f8f0de 100%);
+}
+
+.cta{
+  background:
+    linear-gradient(135deg,#0b5fa5 0%,#14375c 55%,#9b7a27 100%);
+}
+
+footer{
+  background:
+    linear-gradient(135deg,#0d2d4d 0%,#0b4f86 55%,#8b6b20 120%);
+}
+
+@media(max-width:760px){
+  .hero{
+    border-radius:24px;
+    padding-inline:16px;
+  }
+  .intro-rich{
+    border-radius:22px;
+    padding-inline:16px;
+  }
+}
