@@ -94,3 +94,56 @@ footer{background:linear-gradient(125deg,#0a2c50,#064781 65%,#07569c);color:#fff
 .need-grid article>span{display:flex;width:48px;height:48px;border-radius:15px;align-items:center;justify-content:center;background:#eef6fd;color:var(--blue);margin-bottom:18px}
 @media(max-width:1000px){.intro-rich{grid-template-columns:1fr;gap:34px}.value-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.need-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.intro-rich{gap:28px}.intro-rich-copy h2{font-size:31px}.value-grid,.need-grid{grid-template-columns:1fr}.value-grid article,.need-grid article{padding:21px}}
+
+
+/* Premium refresh branch polish */
+:root{--shadow-soft:0 18px 50px rgba(15,48,78,.08);--shadow-hover:0 22px 60px rgba(15,48,78,.14)}
+body{background:
+radial-gradient(circle at 8% 4%,rgba(8,98,173,.05),transparent 24%),
+radial-gradient(circle at 92% 18%,rgba(212,171,67,.06),transparent 22%),
+#fff}
+header{backdrop-filter:blur(12px);background:rgba(255,255,255,.94);box-shadow:0 8px 28px rgba(15,48,78,.05)}
+.hero{padding-top:44px}
+.hero-copy .eyebrow{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#f4f8fc;border:1px solid #e6eef6}
+.hero h1{letter-spacing:-.035em}
+.hero-copy>p{font-size:17px;line-height:1.9;max-width:650px}
+.hero-visual{position:relative}
+.hero-image{border-radius:30px;box-shadow:0 28px 70px rgba(15,48,78,.16)}
+.hero-visual:after{content:"";position:absolute;inset:18px -14px -14px 18px;border:1px solid rgba(8,98,173,.12);border-radius:30px;z-index:-1}
+.trust-bar{margin-top:24px;border:1px solid #e7eef5;border-radius:20px;background:rgba(255,255,255,.86);box-shadow:var(--shadow-soft);padding:16px 18px}
+.trust-bar span{position:relative}
+.trust-bar span:not(:last-child):after{content:"";position:absolute;inset-inline-end:-18px;top:10%;height:80%;width:1px;background:#e8eef4}
+.section-head h2{letter-spacing:-.025em}
+.card,.value-grid article,.need-grid article,.offer-card,.review-card,.comparison-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.card:hover,.value-grid article:hover,.need-grid article:hover,.offer-card:hover,.review-card:hover,.comparison-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:#d6e4f0}
+.service-card{overflow:hidden;position:relative}
+.service-card:before{content:"";position:absolute;inset-inline-end:-34px;top:-34px;width:100px;height:100px;border-radius:50%;background:rgba(8,98,173,.05)}
+.service-card .icon-box{box-shadow:inset 0 0 0 1px rgba(8,98,173,.08)}
+.soft-section{background:linear-gradient(180deg,#f8fbfe 0%,#f4f8fb 100%);border-block:1px solid #edf2f6}
+.editorial-image{position:relative}
+.editorial-image img{border-radius:28px;box-shadow:0 24px 55px rgba(15,48,78,.12)}
+.image-stamp{border-radius:18px;box-shadow:0 12px 30px rgba(15,48,78,.12)}
+.intro-rich{padding-top:74px}
+.value-grid article{border-top:3px solid rgba(8,98,173,.18)}
+.need-grid article{min-height:220px}
+.need-grid article>span{box-shadow:inset 0 0 0 1px rgba(8,98,173,.08)}
+.steps article{background:#fff;border:1px solid #e8eef5;border-radius:20px;padding:24px;box-shadow:0 10px 28px rgba(15,48,78,.05)}
+.cta{border-radius:30px;box-shadow:0 26px 65px rgba(15,48,78,.14);position:relative;overflow:hidden}
+.cta:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.06);inset-inline-end:-60px;bottom:-90px}
+.button{box-shadow:0 8px 18px rgba(8,98,173,.16);transition:transform .2s ease,box-shadow .2s ease}
+.button:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(8,98,173,.22)}
+.footer-grid{padding-top:8px}
+@media(max-width:1000px){.trust-bar span:not(:last-child):after{display:none}}
+@media(max-width:760px){
+  .hero{padding-top:26px}
+  .hero-image,.editorial-image img{border-radius:22px}
+  .hero-visual:after{display:none}
+  .trust-bar{border-radius:16px;padding:12px}
+  .intro-rich{padding-top:52px}
+  .steps article{padding:20px}
+  .cta{border-radius:24px}
+}
+
+.hero-assurance{gap:10px}
+.premium-kicker{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fff7df;color:#8c6a13;border:1px solid #f0df9e;font-size:11px;font-weight:700}
+@media(max-width:760px){.premium-kicker{width:max-content}}
