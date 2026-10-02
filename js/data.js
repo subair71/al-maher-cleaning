@@ -1,10 +1,10 @@
 export const pair=(ar,en)=>({ar,en});
 export const business={name:pair('الماهر','Al Maher'),phone:'+962778842130',whatsapp:'https://wa.me/962778842130',address:pair('لواء الرصيفة · جبل الشمالي · شارع الملك عبدالله الثاني، الأردن','Russeifa · Jabal Al Shamali · King Abdullah II Street, Jordan')};
 export const photos={
-hero:'https://images.pexels.com/photos/8055456/pexels-photo-8055456.jpeg?cs=srgb&fm=jpg',
-sofa:'https://images.pexels.com/photos/6195277/pexels-photo-6195277.jpeg?auto=compress&cs=tinysrgb&w=1600',
-office:'https://images.pexels.com/photos/38767972/pexels-photo-38767972.jpeg?auto=compress&cs=tinysrgb&w=1600',
-glass:'https://images.pexels.com/photos/6197111/pexels-photo-6197111.jpeg?auto=compress&cs=tinysrgb&w=1600'
+hero:'https://images.pexels.com/photos/6197116/pexels-photo-6197116.jpeg?auto=compress&cs=tinysrgb&w=1800',
+sofa:'https://images.pexels.com/photos/6195275/pexels-photo-6195275.jpeg?auto=compress&cs=tinysrgb&w=1600',
+office:'https://images.pexels.com/photos/6197108/pexels-photo-6197108.jpeg?auto=compress&cs=tinysrgb&w=1600',
+glass:'https://images.pexels.com/photos/6197123/pexels-photo-6197123.jpeg?auto=compress&cs=tinysrgb&w=1600'
 };
 export const services=[
 {id:'home',icon:'home',title:pair('تنظيف المنازل والشقق','Home & apartment cleaning'),description:pair('عناية شاملة بالشقق المفروشة والمنازل والفلل، من الغرف إلى المطابخ.','A complete home-care service for apartments, houses and villas, covering living areas, bedrooms, kitchens and the details that make your space feel fresh, comfortable and ready to enjoy.'),image:photos.hero},
@@ -18,7 +18,10 @@ export const offers=[{id:'carpets',title:pair('أربع سجادات… والخ
 {id:'new-home',title:pair('بيت جديد، بداية نظيفة','New home, fresh start'),description:pair('باقات تنظيف للشقق بعد التشطيب والانتقال إلى منزل جديد.','Cleaning packages for post-construction apartments and moving into a new home.'),terms:pair('نطاق العمل والسعر حسب المكان، ويؤكدان قبل الحجز.','Scope and price depend on the space and are agreed before booking.'),start:'',end:'',status:'pending'},
 {id:'business',title:pair('عناية مستمرة بمكانك','Ongoing care for your space'),description:pair('اسأل عن عروض العملاء المميزين والأسعار الخاصة للمكاتب والشركات.','Ask about loyalty offers and special rates for offices and businesses.'),terms:pair('التوفر والأسعار والشروط بحاجة إلى تأكيد. ليست اشتراكاً إلكترونياً أو نظام نقاط.','Availability, rates and terms require confirmation. Not an online subscription or points programme.'),start:'',end:'',status:'pending'}];
 export const reviews=[{id:'review-1',title:pair('عميل تجريبي ٠١','Sample customer 01'),description:pair('«نموذج توضيحي: خدمة مرتبة واهتمام بالتفاصيل.»','“Illustrative example: thoughtful service and attention to detail.”'),status:'sample'},{id:'review-2',title:pair('عميل تجريبي ٠٢','Sample customer 02'),description:pair('«نموذج توضيحي: تنسيق واضح وعناية بالمكان.»','“Illustrative example: clear coordination and care for our space.”'),status:'sample'}];
-export const gallery=[{id:'gallery-sofa',service:'sofa',title:pair('عناية بالمفروشات','Upholstery care'),before:photos.sofa,after:photos.sofa,status:'sample'},{id:'gallery-office',service:'office',title:pair('مساحات عمل منتعشة','Fresh workspaces'),before:photos.office,after:photos.office,status:'sample'}];
+export const gallery=[
+{id:'gallery-sofa',service:'sofa',title:pair('عناية بالمفروشات','Upholstery care'),before:'https://images.pexels.com/photos/11018239/pexels-photo-11018239.jpeg?auto=compress&cs=tinysrgb&w=1600',after:'https://images.pexels.com/photos/19866404/pexels-photo-19866404.jpeg?auto=compress&cs=tinysrgb&w=1600',status:'sample'},
+{id:'gallery-office',service:'office',title:pair('مساحات عمل منتعشة','Fresh workspaces'),before:'https://images.pexels.com/photos/7005459/pexels-photo-7005459.jpeg?auto=compress&cs=tinysrgb&w=1600',after:'https://images.pexels.com/photos/6782349/pexels-photo-6782349.jpeg?auto=compress&cs=tinysrgb&w=1600',status:'sample'}
+];
 export const faqs=[
 [pair('كيف أعرف السعر؟','How do I get a price?'),pair('أخبرنا بنوع الخدمة ومساحة المكان وأرسل الصور عبر واتساب. نؤكد نطاق العمل والسعر معك قبل التنفيذ.','Tell us the service and size of the space, and send photos via WhatsApp. Scope and price are agreed before work starts.')],
 [pair('هل اختيار الموعد يؤكد الحجز؟','Does choosing a time confirm my booking?'),pair('لا. الموعد المفضل هو طلب فقط، ويحتاج إلى تأكيد من فريق الماهر.','No. Your preferred time is a request and needs confirmation from the Al Maher team.')],
