@@ -72,3 +72,8 @@ footer{background:linear-gradient(125deg,#0a2c50,#064781 65%,#07569c);color:#fff
 .hero:before{width:min(38%,380px);height:145px;inset-inline-start:0;bottom:8px;background:url('assets/amman.webp') center bottom/contain no-repeat;opacity:.75;z-index:0;pointer-events:none}
 .hero-copy,.hero-visual{position:relative;z-index:1}
 @media(max-width:760px){.hero:before{width:230px;max-width:75%;height:90px;inset-inline-start:0;bottom:0;opacity:.65}}
+
+/* Jordan landmark signature, with a clear space below the hero content. */
+.hero{padding-bottom:170px}
+.hero:before{width:480px;max-width:90%;height:155px;inset-inline-start:0;bottom:0;opacity:1;filter:contrast(3.8);mix-blend-mode:multiply;background-size:contain}
+@media(max-width:760px){.hero{padding-bottom:125px}.hero:before{width:340px;max-width:100%;height:114px;bottom:0;opacity:1}}
