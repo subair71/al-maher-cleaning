@@ -147,3 +147,20 @@ header{backdrop-filter:blur(12px);background:rgba(255,255,255,.94);box-shadow:0 
 .hero-assurance{gap:10px}
 .premium-kicker{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#fff7df;color:#8c6a13;border:1px solid #f0df9e;font-size:11px;font-weight:700}
 @media(max-width:760px){.premium-kicker{width:max-content}}
+
+
+/* Jordan signature background across the site */
+body{position:relative;background:
+radial-gradient(circle at 8% 4%,rgba(8,98,173,.05),transparent 24%),
+radial-gradient(circle at 92% 18%,rgba(212,171,67,.06),transparent 22%),
+#fff}
+body:before{content:"";position:fixed;inset:auto 0 0 0;height:260px;background:url('assets/amman.webp') center bottom/contain no-repeat;opacity:.055;pointer-events:none;z-index:0}
+main,header,footer{position:relative;z-index:1}
+.hero{position:relative;isolation:isolate;padding-bottom:170px}
+.hero:before{content:"";position:absolute;inset-inline-start:0;bottom:0;width:500px;max-width:92%;height:160px;background:url('assets/amman.webp') left bottom/contain no-repeat;opacity:.16;filter:contrast(1.1);pointer-events:none;z-index:0}
+.hero-copy,.hero-visual{position:relative;z-index:1}
+@media(max-width:760px){
+  body:before{height:170px;opacity:.045}
+  .hero{padding-bottom:120px}
+  .hero:before{width:320px;height:100px;opacity:.14}
+}
