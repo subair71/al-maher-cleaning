@@ -1,10 +1,10 @@
 export const pair=(ar,en)=>({ar,en});
 export const business={name:pair('الماهر','Al Maher'),phone:'+962778842130',whatsapp:'https://wa.me/962778842130',address:pair('لواء الرصيفة · جبل الشمالي · شارع الملك عبدالله الثاني، الأردن','Russeifa · Jabal Al Shamali · King Abdullah II Street, Jordan')};
 export const photos={
-hero:'https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=1800',
-sofa:'https://images.pexels.com/photos/6195275/pexels-photo-6195275.jpeg?auto=compress&cs=tinysrgb&w=1600',
-office:'https://images.pexels.com/photos/6197108/pexels-photo-6197108.jpeg?auto=compress&cs=tinysrgb&w=1600',
-glass:'https://images.pexels.com/photos/6197123/pexels-photo-6197123.jpeg?auto=compress&cs=tinysrgb&w=1600'
+hero:'https://schoonmaakgroepsalland.nl/assets/werkgebied-kaart-BcUNW7Bb.png',
+sofa:'https://www.exclusive-clean.com/professional-cleaning-team-working-on-upholstery-s.jpg',
+office:'https://www.cqdcleaningservices.com/services/office-cleaning2.jpg',
+glass:'https://huber-gebaeudereinigung.at/Hero_Hintergrund.jpg'
 };
 export const services=[
 {id:'home',icon:'home',title:pair('تنظيف المنازل والشقق','Home & apartment cleaning'),description:pair('عناية شاملة بالشقق المفروشة والمنازل والفلل، من الغرف إلى المطابخ.','A complete home-care service for apartments, houses and villas, covering living areas, bedrooms, kitchens and the details that make your space feel fresh, comfortable and ready to enjoy.'),image:photos.hero},
