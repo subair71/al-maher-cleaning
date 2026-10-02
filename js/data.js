@@ -2,7 +2,7 @@ export const pair=(ar,en)=>({ar,en});
 export const business={name:pair('الماهر','Al Maher'),phone:'+962778842130',whatsapp:'https://wa.me/962778842130',address:pair('لواء الرصيفة · جبل الشمالي · شارع الملك عبدالله الثاني، الأردن','Russeifa · Jabal Al Shamali · King Abdullah II Street, Jordan')};
 export const photos={
 hero:'https://images.pexels.com/photos/8055456/pexels-photo-8055456.jpeg?cs=srgb&fm=jpg',
-sofa:'https://images.pexels.com/photos/30238384/pexels-photo-30238384.jpeg?cs=srgb&fm=jpg',
+sofa:'https://images.pexels.com/photos/6197123/pexels-photo-6197123.jpeg?cs=srgb&fm=jpg',
 office:'https://images.pexels.com/photos/10567361/pexels-photo-10567361.jpeg?cs=srgb&fm=jpg',
 glass:'https://images.pexels.com/photos/6197111/pexels-photo-6197111.jpeg?cs=srgb&fm=jpg'
 };
