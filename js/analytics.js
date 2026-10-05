@@ -1,3 +1,6 @@
-import {config} from './config.js';
-export function enableAnalytics(){if(!config.production||!/^G-[A-Z0-9]+$/.test(config.analyticsMeasurementId))return false;window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config',config.analyticsMeasurementId,{send_page_view:false});const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id='+config.analyticsMeasurementId;document.head.append(script);return true}
-export function pageView(title){if(window.gtag)window.gtag('event','page_view',{page_title:title,page_location:location.origin+location.pathname});}
+// Integration contract for a later implementation. Presentation sends no tracking data.
+let attribution={};
+export function captureAttribution(){const q=new URLSearchParams(location.search);if(!attribution.landingPage||q.has('utm_campaign'))attribution={landingPage:location.pathname,...Object.fromEntries(['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].map(k=>[k,(q.get(k)||'').slice(0,150)]))};return {...attribution}}
+export function track(){}
+export function pageView(){captureAttribution()}
+export function enableAnalytics(){return false}
