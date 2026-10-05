@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const app=fs.readFileSync('js/app.js','utf8');const router=app.slice(app.indexOf('function currentPage()'),app.indexOf('\nfunction shell()'));
+function resolve(path,base){return vm.runInNewContext(router+';currentPage()',{URL,location:{pathname:path},document:{baseURI:base}})}
+test('homepage resolves at origin root and GitHub Pages repository root',()=>{for(const prefix of ['/','/al-maher-cleaning/']){const base='https://example.com'+prefix;assert.equal(resolve(prefix,base),'index');assert.equal(resolve(prefix+'index.html',base),'index')}});
+test('nested campaign, service and admin routes remain correct after navigation',()=>{const base='https://example.com/al-maher-cleaning/';for(const [path,expected] of [['admin.html','admin'],['service-sofa.html','service-sofa'],['services.html','services'],['campaigns/sofa-cleaning/','landing'],['services/villa-cleaning/','landing'],['offers/sofa-cleaning/','landing'],['landing.html','landing'],['','index']])assert.equal(resolve('/al-maher-cleaning/'+path,base),expected)});
