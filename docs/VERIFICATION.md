@@ -41,3 +41,18 @@ No claim of production submissions, confirmed bookings, secure authentication, a
 The Sites checkout contained the previous design's `style.css` alongside the new page markup. Replaced it with the matching responsive stylesheet and gave all entry pages a new stylesheet filename (`responsive-v3.css`) to avoid stale asset reuse. Added SVG width/height attributes so icons remain 23px even if styles fail, narrow-phone wrapping, tablet grids and 16px mobile form controls.
 
 `tests/responsive.cjs` validates the actual Sites `dist` directory: 50 combinations of five screens × Arabic/English × 320/390/768/1024/1440px passed. No horizontal overflow, all icons at most 42px, correct theme loaded, and 23px fallback with the stylesheet blocked. Mobile Arabic and desktop English screenshots inspected.
+
+## Expanded design branch — 5 October 2026
+
+- 476 route/language/viewport combinations passed: 34 routes × Arabic/English × 320/375/390/430/768/1024/1440 pixels; no horizontal overflow.
+- All rendered internal links resolved; nested campaign routes and service-to-quote prefilling passed.
+- Request validation, rejected SVG, image selection, review/edit dialog and WhatsApp handoff passed.
+- Request status change, all admin navigation tabs and client editing passed.
+- Mobile menu stacking issue discovered and fixed; RTL mobile navigation passed.
+- Review message preparation passed; no automatic publication or backend submission.
+- No browser JavaScript errors in the interaction suite.
+- Desktop home/campaign/admin and Arabic mobile home/booking screenshots visually inspected.
+- External image requests blocked during deterministic browser checks to exercise local fallbacks. Live external image availability is not guaranteed; existing local cleaning photographs handle failed sources.
+- Existing form-validation unit suite passed (4 tests).
+
+The old browser suite describes previous interfaces; use tests/expanded.cjs for this branch. Actual backend, security enforcement and integrations are explicitly outside this design-only update.
