@@ -12,3 +12,5 @@ Object.assign(words,{
 
 Object.assign(words,{createdAt:pair('تاريخ الإنشاء','Created at'),customerId:pair('مرجع العميل','Customer reference'),paymentStatus:pair('حالة الدفع','Payment status'),lastActivity:pair('آخر نشاط','Last activity'),marketingConsent:pair('موافقة التسويق','Marketing consent'),kind:pair('نوع الطلب','Request type'),requestId:pair('مرجع الطلب','Request reference'),unread:pair('غير مقروء','Unread')});
 
+
+Object.assign(words,{"cleaning-guide":pair("دليل التنظيف","Cleaning guide")});
