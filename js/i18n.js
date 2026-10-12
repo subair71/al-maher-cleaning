@@ -1,6 +1,6 @@
 import {pair} from './data.js';
 export let lang='ar';
-try{lang=new URLSearchParams(location.search).get('lang')||localStorage.getItem('maher-language')||'ar'}catch{}
+try{lang=new URLSearchParams(location.search).get('lang')||(location.pathname.includes('/en/')?'en':'document' in globalThis?document.documentElement.lang:'ar')||'ar'}catch{}
 if(!['ar','en'].includes(lang))lang='ar';
 export const t=value=>typeof value==='string'?value:(value?.[lang]||'');
 export function setLanguage(value){lang=value;try{localStorage.setItem('maher-language',lang)}catch{} document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';}
@@ -11,3 +11,4 @@ Object.assign(words,{
 });
 
 Object.assign(words,{createdAt:pair('تاريخ الإنشاء','Created at'),customerId:pair('مرجع العميل','Customer reference'),paymentStatus:pair('حالة الدفع','Payment status'),lastActivity:pair('آخر نشاط','Last activity'),marketingConsent:pair('موافقة التسويق','Marketing consent'),kind:pair('نوع الطلب','Request type'),requestId:pair('مرجع الطلب','Request reference'),unread:pair('غير مقروء','Unread')});
+

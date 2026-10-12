@@ -9,14 +9,40 @@ routes.update({'service-'+k+'.html':v for k,v in services.items()})
 routes.update({'campaigns/'+slug+'/index.html':services[key] for slug,key in slugs.items()})
 routes['offers/sofa-cleaning/index.html']=services['sofa']
 routes['services/villa-cleaning/index.html']=services['villa']
-base='https://subair71.github.io/al-maher-cleaning/'
-for path,(ar,en) in routes.items():
-    relative='../'*(len(Path(path).parts)-1) or './'
-    url=base+path.replace('/index.html','/')
-    description=ar+' — عناية بالمنازل والأعمال في الرصيفة والزرقاء وعمّان. اطلب عرض سعر أو نسّق موعدك مع الماهر.'
-    schema={'@context':'https://schema.org','@type':'LocalBusiness','name':'Al Maher Cleaning & Dry Cleaning','telephone':'+962778842130','address':{'@type':'PostalAddress','addressLocality':'Russeifa','addressCountry':'JO'}}
-    text=f'''<!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><base href="{relative}"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#14375c"><meta name="robots" content="noindex,nofollow"><title>{escape(ar)} | الماهر</title><meta name="description" content="{escape(description)}"><link rel="canonical" href="{url}"><link rel="alternate" hreflang="ar-JO" href="{url}?lang=ar"><link rel="alternate" hreflang="en" href="{url}?lang=en"><link rel="alternate" hreflang="x-default" href="{url}"><meta property="og:type" content="website"><meta property="og:title" content="{escape(ar)}"><meta property="og:description" content="{escape(description)}"><meta property="og:image" content="{base}assets/cleaning-hero.webp"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary_large_image"><link rel="preload" href="assets/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="responsive-v3.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><div id="app"></div><noscript><main><h1>{escape(ar)}</h1><p>{escape(description)}</p><a href="services.html">خدماتنا / Our services</a><a href="tel:+962778842130">+962778842130</a><a href="https://wa.me/962778842130">WhatsApp</a></main></noscript><script type="module" src="js/app.js"></script></body></html>'''
-    target=Path(path);target.parent.mkdir(parents=True,exist_ok=True);target.write_text(text)
-Path('sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{base}{p.replace("/index.html","/")}</loc></url>\n' for p in routes if p not in ['admin.html','service.html','landing.html'])+'</urlset>')
-Path('robots.txt').write_text('# Private client presentation; indexing activates after approved implementation.\nUser-agent: *\nDisallow: /\n')
+import os, subprocess
+from urllib.parse import urljoin
+from xml.sax.saxutils import escape as xml_escape
+base=os.environ.get('SEO_BASE_URL','https://subair71.github.io/al-maher-cleaning/').rstrip('/')+'/'
+preview=os.environ.get('SEO_PREVIEW','0')=='1'
+data=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {services,faqs} from './js/data.js';console.log(JSON.stringify({services,faqs}))"],text=True))
+service_data={s['id']:s for s in data['services']}
+private={'admin.html','service.html','landing.html','quote.html','booking.html','review.html'}
+metadata={}; sitemap=[]
+for language in ['ar','en']:
+ for path,titles in routes.items():
+    output=('en/' if language=='en' else '')+path
+    url=base+output
+    ar_url=base+path; en_url=base+'en/'+path
+    key=path.removeprefix('service-').removesuffix('.html') if path.startswith('service-') else slugs.get(path.split('/')[1] if '/' in path else '')
+    details=service_data.get(key,{})
+    title=titles[0 if language=='ar' else 1]
+    title=(title+' في الرصيفة والزرقاء وعمّان | الماهر') if language=='ar' else (title+' in Russeifa, Zarqa & Amman | Al Maher')
+    description=details.get('description',{}).get(language) or (titles[0]+' من الماهر في الرصيفة والزرقاء وعمّان. تواصل معنا لمناقشة احتياجات المكان وتأكيد نطاق الخدمة والسعر والموعد.' if language=='ar' else titles[1]+' from Al Maher in Russeifa, Zarqa and Amman, Jordan. Discuss your space, service scope, pricing and visit with our local team.')
+    metadata[output]={'title':title,'description':description,'canonical':url,'ar':ar_url,'en':en_url}
+    business={'@type':'LocalBusiness','@id':base+'#business','name':'Al Maher Cleaning & Dry Cleaning','alternateName':'الماهر لخدمات التنظيف والدراي كلين','url':base,'telephone':'+962778842130','logo':base+'assets/s1.png','image':base+'assets/cleaning-hero.webp','address':{'@type':'PostalAddress','streetAddress':'Jabal Al Shamali, King Abdullah II Street','addressLocality':'Russeifa','addressCountry':'JO'},'areaServed':[{'@type':'City','name':n} for n in ['Russeifa','Zarqa','Amman']]}
+    graph=[business,{'@type':'WebSite','@id':base+'#website','url':base,'name':'Al Maher','publisher':{'@id':base+'#business'},'inLanguage':['ar-JO','en']},{'@type':'WebPage','@id':url+'#webpage','url':url,'name':title,'description':description,'inLanguage':'ar-JO' if language=='ar' else 'en','isPartOf':{'@id':base+'#website'},'about':{'@id':base+'#business'}},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'الرئيسية' if language=='ar' else 'Home','item':base+('en/' if language=='en' else '')+'index.html'}]+([] if path=='index.html' else [{'@type':'ListItem','position':2,'name':titles[0 if language=='ar' else 1],'item':url}])}]
+    if details:graph.append({'@type':'Service','@id':url+'#service','name':details['title'][language],'description':description,'provider':{'@id':base+'#business'},'areaServed':business['areaServed'],'url':url})
+    if path=='faq.html':graph.append({'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q[0][language],'acceptedAnswer':{'@type':'Answer','text':q[1][language]}} for q in data['faqs']]})
+    schema=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\/')
+    metadata[output]['schema']={'@context':'https://schema.org','@graph':graph}
+    root_relative='../'*(len(Path(output).parts)-1) or './'
+    links=''.join(f'<li><a href="{("en/" if language=="en" else "")}service-{k}.html">{escape(v["title"][language])}</a><p>{escape(v["description"][language])}</p></li>' for k,v in service_data.items())
+    faq_content=''.join(f'<details><summary>{escape(q[0][language])}</summary><p>{escape(q[1][language])}</p></details>' for q in data['faqs']) if path=='faq.html' else ''
+    static=f'<main id="main" class="wrap section"><h1>{escape(title)}</h1><p>{escape(description)}</p><p>{"خدمات التنظيف للمنازل والمكاتب والمفروشات في الأردن" if language=="ar" else "Home, office and upholstery cleaning in Jordan"}</p><ul>{links}</ul>{faq_content}<a href="tel:+962778842130">+962 77 884 2130</a> <a href="https://wa.me/962778842130">WhatsApp</a></main>'
+    robots='noindex,follow' if preview or path in private or path.startswith(('campaigns/','offers/','services/')) else 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+    text=f'''<!doctype html><html lang="{language}" dir="{'rtl' if language=='ar' else 'ltr'}"><head><meta charset="utf-8"><base href="{root_relative}"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14375c"><meta name="robots" content="{robots}"><title>{escape(title)}</title><meta name="description" content="{escape(description)}"><link rel="canonical" href="{url}"><link rel="alternate" hreflang="ar-JO" href="{ar_url}"><link rel="alternate" hreflang="en" href="{en_url}"><link rel="alternate" hreflang="x-default" href="{ar_url}"><meta property="og:type" content="website"><meta property="og:site_name" content="Al Maher"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(description)}"><meta property="og:url" content="{url}"><meta property="og:locale" content="{'ar_JO' if language=='ar' else 'en_JO'}"><meta property="og:image" content="{base}assets/cleaning-hero.webp"><meta name="twitter:card" content="summary_large_image"><link rel="preload" href="assets/fonts/{'noto-sans-arabic' if language=='ar' else 'dm-sans'}-400.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="responsive-v3.css"><script type="application/ld+json">{schema}</script></head><body><div id="app">{static}</div><script type="module" src="js/app.js"></script></body></html>'''
+    target=Path(output);target.parent.mkdir(parents=True,exist_ok=True);target.write_text(text)
+    if path not in private and not path.startswith(('campaigns/','offers/','services/')):sitemap.append((url,ar_url,en_url))
+Path('js/seo-data.js').write_text('export const seoPages='+json.dumps(metadata,ensure_ascii=False)+';\n')
+Path('sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">'+''.join('<url><loc>'+xml_escape(url)+'</loc>'+''.join(f'<xhtml:link rel="alternate" hreflang="{lang}" href="{xml_escape(href)}"/>' for lang,href in [('ar-JO',ar),('en',en),('x-default',ar)])+'</url>' for url,ar,en in sitemap)+'</urlset>')
+Path('robots.txt').write_text('User-agent: *\n'+('Disallow: /\n' if preview else 'Allow: /\n')+'Sitemap: '+base+'sitemap.xml\n')
