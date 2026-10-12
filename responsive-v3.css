@@ -524,3 +524,12 @@ footer{background:var(--jordan-sky)}
 @media(max-width:1000px){.design-home .hero{gap:28px}.design-home .hero-image{height:400px}.design-home .hero-label{inset-inline-start:12px;padding:16px}.design-home .value-grid{gap:16px}.header-inner nav a{padding:8px}}
 @media(max-width:767px){.design-home .hero{grid-template-columns:1fr;padding-block:30px 42px;gap:32px}.design-home .hero h1{font-size:36px}.design-home .hero-copy>p{font-size:15px}.design-home .hero-image{height:340px}.design-home .hero-label{bottom:18px;inset-inline-start:12px}.design-home .trust-bar{grid-template-columns:1fr 1fr;padding:20px;gap:18px 10px}.design-home .intro-rich,.design-home .section,.design-home .soft-section{padding-block:44px}.design-home .value-grid{grid-template-columns:1fr}.design-home .about-split{gap:28px}.design-home .editorial-image img{height:320px}.design-home .cta{padding:28px;gap:24px}.design-quote-section{padding:44px 0}.design-quote-card{padding:28px 20px}.design-quote-fields{grid-template-columns:1fr}.design-home .hero-copy>.eyebrow{font-size:10px}.design-home .hero .button{padding:13px 18px}}
 @media(prefers-reduced-motion:reduce){.design-home .service-card{transition:none}.design-home .service-card:hover{transform:none}}
+
+/* Keep footer readable on the attached design's light surface. */
+footer{display:block;background:var(--jordan-sky);color:var(--jordan-navy);padding-bottom:24px}
+.footer-grid h3,.footer-grid>div>a{color:var(--jordan-navy)}
+.footer-grid p,.footer-bottom{color:var(--muted)}
+.footer-bottom{border-color:var(--line)}
+.footer-grid a:hover{color:var(--jordan-blue);text-decoration:underline}
+.logo,.footer-logo{object-fit:contain;object-position:center}
+@media(max-width:767px){footer{padding-bottom:90px}.footer-bottom{padding-bottom:24px}}
