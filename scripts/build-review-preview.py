@@ -14,7 +14,7 @@ a=a[:start]+'''function navigate(url){captureDraft();const u=new URL(url,'https:
 start=a.index("$('#language').onclick=");end=a.index("$('.menu-toggle').onclick",start)
 a=a[:start]+"$('#language').onclick=e=>{e.preventDefault();captureDraft();setLanguage(lang==='ar'?'en':'ar');render(false)};"+a[end:]
 a=a.replace('location.search','(globalThis.previewSearch||\'\')')
-a=a.replace("img.src=new URL('assets/cleaning-'+key+'.webp',document.baseURI).href", "img.src=globalThis.previewAsset('assets/cleaning-'+key+'.webp')")
+a=a.replace("img.src=new URL(img.dataset.fallbackSrc||img.getAttribute('data-fallback')||'assets/cleaning-'+key+'.webp',document.baseURI).href", "img.src=globalThis.previewAsset(img.dataset.fallbackSrc||'assets/cleaning-'+key+'.webp')")
 modules['js/app.js']=a
 modules['js/platform/pages.js']=modules['js/platform/pages.js'].replace('src="${esc(url)}"','src="${esc(globalThis.previewAsset(url))}"')
 # Keep existing external references in source; preview uses their existing local fallback assets.

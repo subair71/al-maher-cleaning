@@ -14,3 +14,5 @@ Object.assign(words,{createdAt:pair('تاريخ الإنشاء','Created at'),cu
 
 
 Object.assign(words,{"cleaning-guide":pair("دليل التنظيف","Cleaning guide")});
+
+words.gallery=pair("قبل وبعد","Before & after");
