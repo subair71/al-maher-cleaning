@@ -15,7 +15,7 @@ from urllib.parse import urljoin
 from xml.sax.saxutils import escape as xml_escape
 base=os.environ.get('SEO_BASE_URL','https://subair71.github.io/al-maher-cleaning/').rstrip('/')+'/'
 preview=os.environ.get('SEO_PREVIEW','0')=='1'
-data=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {services} from './js/data.js';import {repository as db} from './js/repository.js';console.log(JSON.stringify({services:db.list('services'),faqs:db.list('faqs').filter(f=>f.status==='published').map(f=>[f.title,f.description])}))"],text=True))
+data=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {services} from './js/data.js';import {serviceFaqs} from './js/rich-content.js';import {repository as db} from './js/repository.js';console.log(JSON.stringify({serviceFaqs:Object.fromEntries(db.list('services').map(s=>[s.id,serviceFaqs(s.id)])),services:db.list('services'),faqs:db.list('faqs').filter(f=>f.status==='published').map(f=>[f.title,f.description])}))"],text=True))
 service_data={s['id']:s for s in data['services']}
 rendered=json.loads(subprocess.check_output(['node','scripts/render-static.mjs',json.dumps(list(routes))],text=True))
 private={'admin.html','service.html','landing.html','quote.html','booking.html','review.html'}
@@ -37,10 +37,14 @@ for language in ['ar','en']:
     if path=='index.html':title='تنظيف المنازل والكنب والمكاتب' if language=='ar' else 'Home, sofa & office cleaning'
     title=(title+' في الرصيفة والزرقاء وعمّان | الماهر') if language=='ar' else (title+' in Russeifa, Zarqa & Amman | Al Maher')
     description=details.get('description',{}).get(language) or (titles[0]+' من الماهر في الرصيفة والزرقاء وعمّان. تواصل معنا لمناقشة احتياجات المكان وتأكيد نطاق الخدمة والسعر والموعد.' if language=='ar' else titles[1]+' from Al Maher in Russeifa, Zarqa and Amman, Jordan. Discuss your space, service scope, pricing and visit with our local team.')
+    if details:description=details['title'][language]+(' من الماهر في الرصيفة والزرقاء وعمّان. ناقش نطاق الخدمة والسعر والتحضير والموعد.' if language=='ar' else ' from Al Maher in Russeifa, Zarqa and Amman. Explore scope, quote details, preparation and booking requests.')
     metadata[output]={'title':title,'description':description,'canonical':url,'ar':ar_url,'en':en_url}
     business={'@type':'LocalBusiness','@id':base+'#business','name':'Al Maher Cleaning & Dry Cleaning','alternateName':'الماهر لخدمات التنظيف والدراي كلين','url':base,'telephone':'+962778842130','logo':base+'assets/s1.png','image':base+'assets/cleaning-hero.webp','address':{'@type':'PostalAddress','streetAddress':'Jabal Al Shamali, King Abdullah II Street','addressLocality':'Russeifa','addressCountry':'JO'},'areaServed':[{'@type':'City','name':n} for n in ['Russeifa','Zarqa','Amman']]}
     graph=[business,{'@type':'WebSite','@id':base+'#website','url':base,'name':'Al Maher','publisher':{'@id':base+'#business'},'inLanguage':['ar-JO','en']},{'@type':'WebPage','@id':url+'#webpage','url':url,'name':title,'description':description,'inLanguage':'ar-JO' if language=='ar' else 'en','isPartOf':{'@id':base+'#website'},'about':{'@id':base+'#business'}},{'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'الرئيسية' if language=='ar' else 'Home','item':base+('en/' if language=='en' else '')+'index.html'}]+([] if path=='index.html' else [{'@type':'ListItem','position':2,'name':titles[0 if language=='ar' else 1],'item':url}])}]
     if details:graph.append({'@type':'Service','@id':url+'#service','name':details['title'][language],'description':description,'provider':{'@id':base+'#business'},'areaServed':business['areaServed'],'url':url})
+    if details and path.startswith('service-'):
+        questions=data['serviceFaqs'].get(key,[])+data['faqs'][:3]
+        graph.append({'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q[0][language],'acceptedAnswer':{'@type':'Answer','text':q[1][language]}} for q in questions]})
     if path=='faq.html':graph.append({'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q[0][language],'acceptedAnswer':{'@type':'Answer','text':q[1][language]}} for q in data['faqs']]})
     schema=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('</','<\/')
     metadata[output]['schema']={'@context':'https://schema.org','@graph':graph}

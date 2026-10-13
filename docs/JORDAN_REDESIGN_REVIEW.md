@@ -39,3 +39,6 @@ Owner-supplied real paired job photos, approved reviews/client logos, final offe
 Browser automation infrastructure is unavailable in this session. Visual appearance, viewport behavior and end-to-end browser interactions remain unverified. Source, rendering, metadata, links, schema and existing validation/routing checks are validated separately; see check results supplied at handoff.
 
 Completed checks: 56 public/root language variants passed HTML content, heading, structured-data, image and internal-link checks; sitemap/404/upload checks passed; 4 existing validation tests and 2 route tests passed; modified JavaScript syntax and whitespace checks passed. Mobile/desktop visual QA remains outstanding.
+
+## Latest content update
+Primary image URLs now match main’s photos and service-image records; original gallery image pairs remain in use with existing local fallbacks. Added clearly labelled sample residential, upholstery and office enquiries plus three fictional sample reviews. Samples use data-nosnippet and are omitted from review/rating schema. Service-specific FAQs are rendered on the page and emitted in matching FAQPage structured data. Replace illustrative content with owner-approved material when available.
