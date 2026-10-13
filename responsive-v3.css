@@ -587,3 +587,4 @@ html{scroll-padding-top:120px}
 @media(max-width:1000px){.location-layout{grid-template-columns:1fr}}
 @media(max-width:540px){.access-grid{grid-template-columns:1fr}.location-map iframe{height:280px}}
 .sample-project{padding:0;overflow:hidden;border-radius:18px}.sample-project-image img{height:220px;object-fit:cover}.sample-project p{font-size:14px;line-height:1.85}.review-card>.eyebrow{font-size:10px;color:var(--jordan-navy);letter-spacing:.03em}.review-card p{font-size:17px;line-height:1.85}.review-card b{font-size:13px}
+.section-description{max-width:960px;margin:0 0 32px}.section-description p,.segment-description{font-size:15px;line-height:1.95;color:var(--muted)}.request-form>p{font-size:14px;line-height:1.9}.corporate-teaser p{max-width:100%}
