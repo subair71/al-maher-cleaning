@@ -577,3 +577,12 @@ html{scroll-padding-top:120px}
 @media(min-width:761px) and (max-width:1100px){.design-home .hero{gap:32px;padding-block:42px}.design-home .hero-image{height:450px}.design-home .hero-copy>p{font-size:15px}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.design-home .hero{padding-block:34px 30px;gap:26px}.design-home .hero-image{height:330px;border-radius:20px 20px 52px 20px}.design-home .hero h1{font-size:38px}html[lang=ar] .design-home .hero h1{font-size:34px}.design-home .hero-copy>p{font-size:15px}.design-home .hero-label{padding:13px;bottom:18px}.design-home .hero-label b{font-size:12px}.design-home .hero-label small{font-size:9px}.intent-strip{padding:18px;gap:8px}.intent-strip>span{width:100%;margin-bottom:7px}.intent-strip a{font-size:11px;padding:9px 12px}.design-home .section,.design-home .soft-section{padding-block:46px}.service-photo{height:210px}.service-card p,.design-home .service-card p{min-height:0}.footer-grid{grid-template-columns:1fr 1fr}.mobile-actions a{min-height:52px}.floating{display:none}body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){.service-photo{transition:none}.service-card:hover .service-photo{transform:none}}
+.location-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start}
+.location-map{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--jordan-sky)}
+.location-map iframe{display:block;border:0;width:100%;height:330px}
+.location-caption{padding:24px}.location-caption p{font-size:14px;line-height:1.8}.location-caption b{font-size:18px}
+.access-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.access-card{padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;min-width:0}
+.transport-icon{display:block;font-size:28px;margin-bottom:12px}.access-card h3{font-size:19px;margin:0 0 10px}.access-card p{font-size:13px;line-height:1.8}.access-card a{font-size:12px;min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:1000px){.location-layout{grid-template-columns:1fr}}
+@media(max-width:540px){.access-grid{grid-template-columns:1fr}.location-map iframe{height:280px}}
