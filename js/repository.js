@@ -1,6 +1,6 @@
-import {services,offers,gallery} from './data.js';
+import {services,offers,gallery,reviews} from './data.js';
 import {extraServices,campaigns,clients,faqItems} from './platform/catalog.js';
-const seed=()=>({services:[...structuredClone(services).map(s=>({...s,status:'published',slug:s.id+'-cleaning'})),...structuredClone(extraServices)],offers:structuredClone(offers),reviews:[],gallery:structuredClone(gallery),clients:structuredClone(clients),landingPages:structuredClone(campaigns),faqs:structuredClone(faqItems),siteContent:[],campaigns:[],customers:[],notifications:[],requests:[],bookings:[],corporate:[]});
+const seed=()=>({services:[...structuredClone(services).map(s=>({...s,status:'published',slug:s.id+'-cleaning'})),...structuredClone(extraServices)],offers:structuredClone(offers),reviews:structuredClone(reviews),gallery:structuredClone(gallery),clients:structuredClone(clients),landingPages:structuredClone(campaigns),faqs:structuredClone(faqItems),siteContent:[],campaigns:[],customers:[],notifications:[],requests:[],bookings:[],corporate:[]});
 let state=seed();
 // Presentation adapter only. No network, credentials or persistent customer data.
 export const repository={mode:'presentation',list:kind=>state[kind]||[],get:(kind,id)=>state[kind]?.find(x=>x.id===id),
