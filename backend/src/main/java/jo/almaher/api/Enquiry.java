@@ -16,7 +16,7 @@ public class Enquiry {
   public String address;
   @Column(name="requested_date") public LocalDate requestedDate;
   @Column(name="preferred_time") public String preferredTime;
-  public String message;
+  @Column(columnDefinition="text") public String message;
   @Column(nullable=false) public String language;
   @Column(nullable=false) public boolean consent;
   @Enumerated(EnumType.STRING) @Column(nullable=false) public Status status;
