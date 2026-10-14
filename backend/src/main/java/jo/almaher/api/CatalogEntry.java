@@ -10,8 +10,8 @@ public class CatalogEntry {
  @Column(nullable=false) public String slug;
  @Column(name="title_ar",nullable=false) public String titleAr;
  @Column(name="title_en",nullable=false) public String titleEn;
- @Column(name="body_ar") public String bodyAr;
- @Column(name="body_en") public String bodyEn;
+ @Column(name="body_ar",columnDefinition="text") public String bodyAr;
+ @Column(name="body_en",columnDefinition="text") public String bodyEn;
  @Column(name="image_url") public String imageUrl;
  @Column(nullable=false) public boolean published;
  @Column(name="display_order",nullable=false) public int displayOrder;
