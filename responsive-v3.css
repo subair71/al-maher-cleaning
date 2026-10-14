@@ -588,3 +588,37 @@ html{scroll-padding-top:120px}
 @media(max-width:540px){.access-grid{grid-template-columns:1fr}.location-map iframe{height:280px}}
 .sample-project{padding:0;overflow:hidden;border-radius:18px}.sample-project-image img{height:220px;object-fit:cover}.sample-project p{font-size:14px;line-height:1.85}.review-card>.eyebrow{font-size:10px;color:var(--jordan-navy);letter-spacing:.03em}.review-card p{font-size:17px;line-height:1.85}.review-card b{font-size:13px}
 .section-description{max-width:960px;margin:0 0 32px}.section-description p,.segment-description{font-size:15px;line-height:1.95;color:var(--muted)}.request-form>p{font-size:14px;line-height:1.9}.corporate-teaser p{max-width:100%}
+
+/* AGE-inspired entrances, tactile cards and a pausable review ribbon. */
+@keyframes maher-enter {from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes maher-reviews {to{transform:translateX(calc(-50% - 12px))}}
+@keyframes maher-reviews-rtl {to{transform:translateX(calc(50% + 12px))}}
+@media (prefers-reduced-motion:no-preference){
+  .motion-enter.motion-in{animation:maher-enter .7s cubic-bezier(.2,.7,.2,1) var(--motion-delay,0ms) both}
+  .service-photo,.editorial-image img{transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+  .service-photo-link,.editorial-image{overflow:hidden}
+  .service-card,.sample-project,.offer-card{transition:box-shadow .25s,border-color .25s}
+  .text-link .icon,.button .icon{transition:translate .25s}
+  .steps>article.motion-in>span{animation:maher-enter .55s ease calc(var(--motion-delay,0ms) + 160ms) both}
+  @media(hover:hover){
+    .service-card:hover .service-photo,.editorial-image:hover img{transform:scale(1.045)}
+    .service-card:hover,.sample-project:hover,.offer-card:hover{box-shadow:0 18px 42px #14375c18;border-color:var(--gold)}
+    .text-link:hover .direction,.button:hover .direction{translate:4px 0}
+    [dir=rtl] .text-link:hover .direction,[dir=rtl] .button:hover .direction{translate:-4px 0}
+  }
+  .reviews-track{animation:maher-reviews var(--review-duration,36s) linear infinite}
+  [dir=rtl] .reviews-track{animation-name:maher-reviews-rtl}
+}
+.reviews-motion{min-width:0}
+.reviews-toggle{margin-block:0 18px;font-size:13px}
+.reviews-viewport{overflow:hidden;padding-block:6px 20px}
+.grid.reviews-track{display:flex;gap:24px;width:max-content}
+.reviews-track>.review-card{flex:none;width:clamp(260px,30vw,360px);margin:0;white-space:normal}
+.reviews-motion:hover .reviews-track,.reviews-motion:focus-within .reviews-track,.reviews-motion.is-paused .reviews-track{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  .motion-enter,.reveal.visible,.reviews-track{animation:none!important;opacity:1!important;transform:none!important}
+  .button,.service-photo,.editorial-image img,.text-link .icon{transition:none!important}
+  .reviews-viewport{overflow-x:auto}
+  .reviews-track>[aria-hidden=true]{display:none}
+}
